@@ -13,9 +13,14 @@ import android.widget.Button;
 import android.content.Context;
 import android.widget.Toast;
 
+import java.util.ArrayList;
+
 public class MainActivity extends AppCompatActivity {
     Button button;
     Button button2;
+    Button button3;
+    int id = 0;
+
     DrawView drawView;
     DollarRecognizer dollarRecognizer;
 
@@ -30,6 +35,8 @@ public class MainActivity extends AppCompatActivity {
 
         button2  = (Button) findViewById(R.id.button2);
 
+        button3  = (Button) findViewById(R.id.button3);
+
        // drawView = new DrawView(this);
         drawView = (DrawView) findViewById(R.id.drawView1);
         drawView.setBackgroundColor(Color.WHITE);
@@ -42,6 +49,10 @@ public class MainActivity extends AppCompatActivity {
     }
     public void button1_click(View view)
     {
+        ArrayList points = drawView.GetArrayList();
+        if(points.isEmpty())
+            return;
+
         RecognizerResults results = dollarRecognizer.Recognize(drawView.GetArrayList());
 
         Context context = getApplicationContext();
@@ -56,6 +67,20 @@ public class MainActivity extends AppCompatActivity {
     {
      drawView.Clear();
     }
+
+    public void button3_click(View view)
+    {
+        ArrayList points = drawView.GetArrayList();
+        if(points.isEmpty())
+            return;
+
+        String name = "new_gesture_" + id;
+        id++;
+
+        dollarRecognizer.addGesture(name,drawView.GetArrayList());
+        drawView.Clear();
+    }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.

@@ -32,6 +32,14 @@
             android:onClick="button2_click"
             android:visibility="visible"
             ></Button>
+        <Button xmlns:android="http://schemas.android.com/apk/res/android"
+            android:text = "train"
+            android:id = "@+id/button3"
+            android:layout_width = "wrap_content"
+            android:layout_height = "wrap_content"
+            android:onClick="button3_click"
+            android:visibility="visible"
+            ></Button>
     </LinearLayout>
     <LinearLayout
         android:layout_width="wrap_content"
